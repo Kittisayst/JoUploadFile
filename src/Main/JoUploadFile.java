@@ -37,7 +37,7 @@ public class JoUploadFile {
             // Create the multipart entity builder
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
             builder.addBinaryBody(postKey, convert.getFile(), ContentType.APPLICATION_OCTET_STREAM, FileName + "." + convert.getExtension());
-
+            System.out.println(FileName + "." + convert.getExtension());
             // Set the entity to the request
             HttpEntity multipart = builder.build();
             httpPost.setEntity(multipart);
@@ -54,6 +54,12 @@ public class JoUploadFile {
             e.printStackTrace();
             return false;
         }
+    }
+    
+    
+
+    public String getExtension() {
+        return convert.getExtension();
     }
 
     public void close() {
