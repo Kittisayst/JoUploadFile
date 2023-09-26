@@ -43,6 +43,27 @@ public class JoHttp {
         return false;
     }
 
+    public boolean isCheck() {
+        try {
+            HttpClient httpClient = HttpClientBuilder.create().build();
+            HttpGet httpGet = new HttpGet(url);
+            HttpResponse response = httpClient.execute(httpGet);
+
+            // Get the response code
+            int statusCode = response.getStatusLine().getStatusCode();
+            responseCode = statusCode;
+            // Read the response content
+            HttpEntity entity = response.getEntity();
+            String content = EntityUtils.toString(entity);
+            responseContent = content;
+            // Print the content
+            return entity != null;
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public int getResponseCode() {
         return responseCode;
     }
